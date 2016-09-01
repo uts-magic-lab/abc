@@ -56,7 +56,10 @@ var config = {
         ]
     },
     closureLoader: {
-        paths: [ path.join(__dirname, 'node_modules', 'blockly')],
+        paths: [
+            path.join(__dirname, 'node_modules', 'blockly', 'core'),
+            path.join(__dirname, 'node_modules', 'google-closure-library', 'closure')
+        ],
         es6mode: true
     },
     profile: true,
@@ -71,7 +74,7 @@ var config = {
             },
             {
                 test: /\.js$/,
-                include: /node_modules\/blockly/,
+                include: /node_modules\/(blockly|google-closure-library)/,
                 loader: 'closure'
             },
             {
@@ -115,7 +118,7 @@ var config = {
 
 config.devServer = {
     host: process.env.HOST || '127.0.0.1',
-    port: process.env.PORT || '8080',
+    port: process.env.PORT || '8083',
     contentBase: config.output.path,
     publicPath: '/',
     compress: true

@@ -13,7 +13,8 @@
   "author": "Jesse Clark",
   "license": "MIT",
   "dependencies": {
-    "blockly": "google/blockly"
+    "blockly": "google/blockly",
+    "google-closure-library": "^20160822.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",

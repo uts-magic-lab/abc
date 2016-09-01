@@ -1,5 +1,11 @@
-// import blockly from 'blockly/core/blockly';
-// import blockly from 'blockly/blockly_uncompressed';
-import blockly from 'blockly/blockly_compressed';
+var Blockly = require('exports?Blockly!blockly/blockly_compressed');
+// window.Blockly = Blockly;
 
-window.blockly = blockly;
+var pyrideBlocks = require('./pyrideBlocks');
+
+var blocklyDiv = document.getElementById('blockly');
+// blocklyDiv.style.width = window.innerWidth;
+// blocklyDiv.style.height = Math.max(window.innerHeight, 800);
+
+Blockly.inject(blocklyDiv, {toolbox: pyrideBlocks.toolbox});
+
