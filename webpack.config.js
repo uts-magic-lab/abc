@@ -45,6 +45,9 @@ var config = {
     },
     plugins: [
         new webpack.DefinePlugin({'process.env': env}),
+        new webpack.ProvidePlugin({
+            goog: 'google-closure-library/closure/goog/base',
+        }),
         new CopyPlugin([{from: 'static'}]),
         cssPlugin,
         failPlugin
@@ -57,10 +60,10 @@ var config = {
     },
     closureLoader: {
         paths: [
-            path.join(__dirname, 'node_modules', 'blockly', 'core'),
-            path.join(__dirname, 'node_modules', 'google-closure-library', 'closure')
+            path.join(__dirname, 'node_modules', 'blockly'),
+            path.join(__dirname, 'node_modules', 'google-closure-library', 'closure', 'goog')
         ],
-        es6mode: true
+        es6mode: false
     },
     profile: true,
     module: {
@@ -75,7 +78,19 @@ var config = {
             {
                 test: /\.js$/,
                 include: /node_modules\/(blockly|google-closure-library)/,
-                loader: 'closure'
+                loader: 'closure',
+                exclude: [/base\.js$/]
+            },
+            {
+                test: /google-closure-library\/closure\/goog\/base/,
+                loaders: [
+                    'imports?this=>{goog:{}}&goog=>this.goog',
+                    'exports?goog',
+                ],
+            },
+            {
+                test: /\.json$/,
+                loader: 'json'
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

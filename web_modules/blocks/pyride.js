@@ -1,4 +1,4 @@
-var Blockly = require('exports?Blockly!blockly/blockly_compressed');
+var Blockly = require('exports?goog&Blockly!blockly/blockly_compressed').Blockly;
 
 const pyrideMethods = {
   PyRIDE: [
